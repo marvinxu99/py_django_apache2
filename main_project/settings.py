@@ -47,31 +47,18 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-#    'whitenoise.runserver_nostatic',    # http://whitenoise.evans.io/en/stable/django.html
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     
-    'polls.apps.PollsConfig',
     'accounts.apps.AccountsConfig',
-    'boards.apps.BoardsConfig',
-    'catalog.apps.CatalogConfig',
     'core.apps.CoreConfig',
-    'kbase.apps.KbaseConfig',
-    'posts.apps.PostsConfig',
-    'utils.apps.UtilsConfig',
     'itrac.apps.iTracConfig',
-    'webgl.apps.WebglConfig',
-    'payments.apps.PaymentsConfig',
-    'budget.apps.BudgetConfig',
-    'scan_n_pay.apps.ScannPayConfig',
-    'books.apps.BooksConfig',
 
     'widget_tweaks',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',    # http://whitenoise.evans.io/en/stable/
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -133,7 +120,7 @@ DATABASES = {
 
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'winn_dev_3',
+        'NAME': 'winn_dev_5',
         'USER': 'winter',
         'PASSWORD': 'winter',
         'HOST': 'localhost',
@@ -182,10 +169,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# https://warehouse.python.org/project/whitenoise/
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-# http://whitenoise.evans.io/en/stable/django.html#storage-troubleshoot
-# STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
 # addin the following will cause HEROU rejected to deploy????
 # but works locally???heroku
