@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 from decouple import config, Csv
-import django_heroku
+# import django_heroku
 
 
 AUTH_USER_MODEL = 'accounts.User'
@@ -29,14 +29,15 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 #SECRET_KEY = "CHANGE_ME!!!! (P.S. the SECRET_KEY environment variable will be used, if set, instead)."
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = config('SECRET_KEY', default='12345')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=False, cast=bool)
+#DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG=True
 DOMAIN = config('DOMAIN', default='DEV')
 
-#ALLOWED_HOSTS = ['winn.herokuapp.com', '127.0.0.1']
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
+ALLOWED_HOSTS = ['192.168.0.14', '127.0.0.1', 'localhost']
+#ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 
 # Application definition
@@ -101,31 +102,31 @@ EMAIL_PORT = 465
 # postgreSQL: https://docs.djangoproject.com/en/3.0/ref/databases/
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    # }
+    'default': {
+         'ENGINE': 'django.db.backends.sqlite3',
+         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
 
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME': 'winn_dev2',
-    #     'USER': 'winter',
-    #     'PASSWORD': 'winter',
-    #     'HOST': 'localhost',
-    #     'PORT': '',
+    #'default': {
+    #    'ENGINE': 'django.db.backends.mysql',
+    #    'NAME': 'winn_mysql_1',
+    #    'USER': 'winter',
+    #    'PASSWORD': 'winter',
+    #    'HOST': 'localhost',
+    #    'PORT': '',
     #     # 'OPTIONS': {
     #     #     'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
     #     #     }
-    # }
+    #}
 
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'winn_dev_5',
-        'USER': 'winter',
-        'PASSWORD': 'winter',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
+    #'default': {
+    #   'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #    'NAME': 'winn_itrac_1',
+    #    'USER': 'winter',
+    #    'PASSWORD': 'winter',
+    #    'HOST': 'localhost',
+    #    'PORT': '5432',
+    #}
 }
 
 
@@ -175,7 +176,6 @@ STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesSto
 # but works locally???heroku
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
-    os.path.join(BASE_DIR, "generated_codes"),
 ]
 
 MEDIA_URL = '/media/'
@@ -193,4 +193,4 @@ OXFORD_APP_KEY = config('OXFORD_APP_KEY', default='')
 
 
 # Configure Django App for Heroku. 
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
